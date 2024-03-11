@@ -1,0 +1,42 @@
+{% extends "parent/parent.html" %}
+{% load static %}
+{% block title %}
+    EchoPen | SignUp
+{% endblock %}
+{% block links %}
+    <link rel="stylesheet" href='{% static "css/forms.css" %}'>
+{% endblock %}
+{% block content %}
+
+    <div class="form-container" data-aos="fade-down">
+        <h2>
+            Sign Up
+        </h2>
+        <p> Already have an account? <a href="{% url 'SignIn' %}">Sign In</a></p>
+        <form method="post">
+            {% csrf_token %}
+            <div class="errors">
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        <ul>
+                            {% for field, error_list in form.errors.items %}
+                                {% for error in error_list %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
+            <!-- <input type="text" name="FullName" placeholder="full name..." value="{% if form.errors %}{{ form.FullName.value }}{% endif %}"> -->
+            <input type="text" name="Username" placeholder="username..." value="{% if form.errors %}{{ form.Username.value }}{% endif %}">
+            <input type="email" name="Email" placeholder="email..." value="{% if form.errors %}{{ form.Email.value }}{% endif %}">
+            <input type="password" name="password1" placeholder="password..." value="{% if form.errors %}{{ form.password1.value }}{% endif %}">
+            <input type="password" name="password2" placeholder="confirm password..." value="{% if form.errors %}{{ form.password2.value }}{% endif %}">
+            <input type="submit" value="Sign Up" >
+
+        </form>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,144 @@
+.sort-container{
+    width: 50%;
+    background: #28293d;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0px 0px 4px #111;
+    transition: ease 0.3s;
+    position: relative;
+    z-index: 2;
+
+}
+
+
+
+.sort-container:hover{
+    box-shadow: 0px 0px 8px #111;
+}
+
+.sort-item{
+    margin:10px 5px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    transition: all ease 0.3s;
+}
+
+.sort-item>a{
+    color: #868686;
+    font-weight: 300;
+    transition: all ease 0.3s;
+}
+
+
+.sort-item:hover.sort-item>a{
+    color: #c0c0c0 ;
+    font-weight: 400;
+}
+
+.sort-item:hover{
+    background: #32334d;
+}
+
+@media (max-width: 768px)  {
+    .sort-container {
+        width: 80%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1000px) {
+    .sort-container {
+        width: 60%;
+    }
+}
+
+.articles-container{
+    width: 100%;
+    margin: 5% 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 2;
+}
+
+.article{
+    width: 300px;
+    height: 480px;
+    background: #28293d;
+    box-shadow: 0px 0px 3px #111;
+    overflow: hidden;
+    border-radius: 10px;
+    text-align: center;
+    margin: 20px;
+    transition: all ease 0.3s;
+}
+
+.article:hover{
+    box-shadow: 0px 0px 8px #111;
+}
+
+body{
+    overflow-y: visible !important;
+}
+
+.article>img{
+    border-radius: 10px;
+    transition: all ease 0.3s;
+
+}
+
+
+.article>img:hover{
+    scale: 1.03;
+}
+
+.article>h2{
+    font-size: 1em;
+    margin-top: 5px;
+}
+
+.discription{
+    padding: 5px;
+    text-align: center;
+    font-size: 0.85em;
+    color: #9a9a9a;
+    font-weight: 300;
+    margin-top: 5px;
+}
+
+.hr{
+    width: 60%;
+    height: 1.5px;
+    margin:5px auto;
+    background: #2f66ee;
+    border-radius: 10px;
+    
+}
+
+.detail{
+    width: 95%;
+    padding: 5px;
+    background: #32334d;
+    margin: 10px auto;
+    border-radius: 10px;
+    display: flex;
+    justify-content: left;
+}
+
+.detail>div>p,
+.detail>div>i{
+    font-weight: 200;
+    font-size: 0.70em;
+    margin: 2px;
+}
+
+.detail>div{
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    margin: 5px;
+}
