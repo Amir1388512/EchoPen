@@ -12,8 +12,8 @@
         <h2>
             Sign In
         </h2>
-        <p> don't you have account? <a href="../templates/SignUp.html">Sign Up</a></p>
-        <form action="#" autocomplete="on" method="post">
+        <p> don't you have account? <a href="{% url 'SignUp' %}">Sign Up</a></p>
+        <form method="post">
             {% csrf_token %}
             <input type="text" name="username" placeholder="username..." value="{% if form.errors %}{{ form.Username.value }}{% endif %}">
             <input type="password" name="password" placeholder="password..." value="{% if form.errors %}{{ form.password.value }}{% endif %}">

@@ -1,0 +1,24 @@
+{% extends "parent/parent.html" %}
+{% load static %}
+{% block title %}
+    EchoPen | Contact
+{% endblock %}
+{% block links %}
+    <link rel="stylesheet" href='{% static "css/forms.css" %}'>
+{% endblock %}
+{% block content %}
+
+    <div class="form-container" data-aos="fade-down">
+        <h2>
+            Contact
+        </h2>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="fullName" placeholder="full name..." >
+            <input type="email" name="email" placeholder="email..." >
+            <textarea name="msg" style="resize: none;" minlength="30" maxlength="600" placeholder="Type your massage here..."></textarea>
+            <input type="submit" value="Send">
+        </form>
+    </div>
+
+{% endblock %}

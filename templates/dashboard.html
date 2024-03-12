@@ -1,0 +1,175 @@
+{% extends "parent/parent.html" %}
+{% load static %}
+{% block title %}
+    EchoPen | Dashboard
+{% endblock %}
+{% block links %}
+    <link rel="stylesheet" href='{% static "css/dashboard.css" %}'>
+    <link rel="stylesheet" href='{% static "css/articles.css" %}'>
+    <link rel="stylesheet" href='{% static "css/forms.css" %}'>
+
+{% endblock %}
+{% block content %}
+
+<style>
+    /* CSS for responsiveness */
+
+
+    .chart-container > div {
+        width: 100%;
+    }
+
+    @media (min-width: 768px) {
+        .chart-container > div {
+            width: 45%;
+        }
+    }
+</style>
+
+<div class="dashboard-container">
+
+    <div class="data-container">
+        <div class="data">
+            <div>
+                <h3>Articles</h3>
+                <div class="icon-container">
+                    <i class="bi bi-postcard"></i>
+                </div>
+            </div>
+            <h3>56</h3>
+        </div>
+        <div class="data">
+            <div>
+                <h3>Views</h3>
+                <div class="icon-container">
+                    <i class="bi bi-eye"></i>
+                </div>
+            </div>
+            <h3>350k</h3>
+        </div>
+        <div class="data">
+            <div>
+                <h3>Pending</h3>
+                <div class="icon-container">
+                    <i class="bi bi-arrow-clockwise"></i>
+                </div>
+            </div>
+            <h3>4</h3>
+        </div>
+    </div>
+
+    <h2>
+        <span style="color: #2f66ee;">Your</span> Articles
+    </h2>
+
+    <button class="btn" style="margin: 2% 1%;"><a href="#">Add Article</a></button>
+    <button class="btn" style="margin:2% 1%; background:#a83422;box-shadow: 0 0 3px #a83422;"><a href="{% url 'LogOut' request.user.slug %}">Log Out</a></button>
+
+    <div class="articles-container">
+        <!-- article  -->
+        <div class="article">
+            <img src="{% static 'media/jupiter.jpg' %}" width="300" height="200" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+            <h2>
+                10 Facts about jupiter that you shold know
+            </h2>
+            <div class="hr"></div>
+            <div class="discription">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident minima debitis nemo numquam incidunt odit nobis! Voluptate quibusdam nihil recusandae quo est itaque numquam nisi quas, velit natus ipsum excepturi.
+                </p>
+            </div>
+            <div class="hr"></div>
+            <div class="detail">
+                <div>
+                    <i class="bi bi-eye"></i>
+                    <p>121k</p>
+                </div>
+                <div>
+                    <i class="bi bi-heart"></i>
+                    <p>1k</p>
+                </div>
+                <div>
+                    <i class="bi bi-calendar"></i>
+                    <p>1402/2/12</p>
+                </div>
+
+                <div>
+                    <i class="bi bi-chat-left-dots"></i>
+                    <p>50</p>
+                </div>
+
+            </div>
+            <div class="btn-container">
+                <button class="btn" style="background-color: #a88a22; box-shadow: 0 0 3px #a88a22;"><a href="#">Edit</a></button>
+                <button class="btn" style="background-color: #a83422; box-shadow: 0 0 3px #a83422;margin-left: 7px;"><a href="#">Delete</a></button>
+            </div>
+        </div>
+
+
+
+        <div class="article">
+            <img src="{% static 'media/jupiter.jpg' %}" width="300" height="200" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+            <h2>
+                10 Facts about jupiter that you shold know
+            </h2>
+            <div class="hr"></div>
+            <div class="discription">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident minima debitis nemo numquam incidunt odit nobis! Voluptate quibusdam nihil recusandae quo est itaque numquam nisi quas, velit natus ipsum excepturi.
+                </p>
+            </div>
+            <div class="hr"></div>
+            <div class="detail">
+                <div>
+                    <i class="bi bi-eye"></i>
+                    <p>121k</p>
+                </div>
+                <div>
+                    <i class="bi bi-heart"></i>
+                    <p>1k</p>
+                </div>
+                <div>
+                    <i class="bi bi-calendar"></i>
+                    <p>1402/2/12</p>
+                </div>
+
+                <div>
+                    <i class="bi bi-chat-left-dots"></i>
+                    <p>50</p>
+                </div>
+
+            </div>
+            <div class="btn-container">
+                <button class="btn" style="background-color: #a88a22; box-shadow: 0 0 3px #a88a22;"><a href="#">Edit</a></button>
+                <button class="btn" style="background-color: #a83422; box-shadow: 0 0 3px #a83422; margin-left: 7px;"><a href="#">Delete</a></button>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+
+    <h2>
+        Articles <span style="color: #2f66ee;">Analytics</span>
+    </h2>
+    <div class="chart-container">
+        <div>
+            <canvas id="barChart"></canvas>
+        </div>
+        <div>
+            <canvas id="lineChart"></canvas>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}
+{% block scripts %}
+    <!-- Chart js  -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- My Script  -->
+    <script src='{% static "js/charts.js" %}'></script>
+{% endblock %}

@@ -26,8 +26,8 @@
     
     <!-- Start Menu  -->
     <menu>
-        <div class="opt" data-aos="fade-down"><a href="#">Home</a></div>
-        <div class="opt" data-aos="fade-up"><a href="./templates/Contact.html">Contact</a></div>
+        <div class="opt" data-aos="fade-down"><a href="/">Home</a></div>
+        <div class="opt" data-aos="fade-up"><a href="/contact">Contact</a></div>
         <div class="opt" data-aos="fade-down"><a href="./templates/articles.html">Articles</a></div>
         {% if request.user.is_authenticated %}
             <div class="opt" data-aos="fade-up"><a href="/Dashboard/{{ request.user.slug }}">Dashboard</a></div>

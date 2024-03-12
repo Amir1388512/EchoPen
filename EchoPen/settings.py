@@ -128,3 +128,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Authentication
 AUTH_USER_MODEL = "EchoPenApp.User"
+
+
+# SMTP Configuration for sending emails
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com' 
+EMAIL_PORT = 587  
+EMAIL_HOST_USER = 'amir.1388512.rezaie@gmail.com'  
+EMAIL_HOST_PASSWORD = 'zfiy xiqo tabh lcax' 
+EMAIL_USE_TLS = True  
