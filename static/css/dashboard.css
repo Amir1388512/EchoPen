@@ -1,61 +1,38 @@
-.dashboard-container{
-    position: relative;
-    z-index: 4;
-    text-align: center;
-    width: 100%;
-    margin: 10px;
+@import url('./base.css');
 
-}
-
-
-.btn-container{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.chart-container{
-    width: 80%;
-    padding: 10px;
-    margin: 20px auto;
-    border-radius: 15px;
-    background: #32334dc4;
-    box-shadow: 0 0 4px #32334d;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-@media (max-width: 768px) {
-    .chart-container {
-        width: 95%;
-    }
-}
-
-.data-container{
+.data-container {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     width: 80%;
     padding: 10px;
     margin: 10px auto;
+    font-family: var(--font-family);
 }
 
-.data-container>div{
-    background: #32334dc4;
+.data-container>div {
     padding: 25px;
     width: 250px;
     border-radius: 15px;
-    box-shadow: 0 0 4px #32334d;
     margin: 20px;
     text-align: left;
 }
 
-.data-container>div>h3{
+body.dark .data-container>div {
+    background: #32334d;
+    box-shadow: 0 0 4px #32334d;
+}
+
+body.light .data-container>div {
+    background: #fff;
+    box-shadow: 0 0 4px #fff;
+}
+
+.data-container>div>h3 {
     margin-left: 5px;
 }
 
-.data-container>div>div{
+.data-container>div>div {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -63,9 +40,53 @@
 }
 
 
-.icon-container{
-    background: #2f65ee56;
+.icon-container {
+    background: #2f65ee47;
     padding: 7px;
     border-radius: 10px;
     color: #2f66ee;
+}
+
+.dashboard-container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    width: 100%;
+    margin: 10px;
+
+}
+
+.btn-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+}
+
+.chart-container {
+    width: 80%;
+    padding: 10px;
+    margin: 20px auto;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+body.dark .chart-container {
+    background: #32334d;
+    box-shadow: 0 0 4px #32334d;
+}
+
+body.light .chart-container {
+    background: #fff;
+    box-shadow: 0 0 4px #fff;
+}
+
+
+
+@media (max-width: 768px) {
+    .chart-container {
+        width: 95%;
+    }
 }

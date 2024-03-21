@@ -6,10 +6,12 @@ from django.utils.text import slugify
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 
+
 # Home View
 # ------------------------------------------------------------------
 def home_view(request):
     return render(request, 'home.html')
+
 
 # ------------------------------------------------------------------
 
@@ -29,7 +31,8 @@ def signup_view(request):
         return render(request, 'signup.html', {'form': form})
     else:
         return redirect('home')
-        
+
+
 # ------------------------------------------------------------------
 
 
@@ -51,6 +54,8 @@ def signin_view(request):
         return render(request, 'signin.html', {'form': form})
     else:
         return redirect('home')
+
+
 # ------------------------------------------------------------------
 
 
@@ -63,6 +68,8 @@ def dashboard_view(request, slug):
         if username != slug:
             return redirect('home')
     return render(request, 'dashboard.html')
+
+
 # ------------------------------------------------------------------
 
 
@@ -76,6 +83,8 @@ def logout_view(request, slug=None):
             return redirect('home')
     logout(request)
     return redirect('home')  # Redirect to login page after logout
+
+
 # ------------------------------------------------------------------
 
 # Contact 
@@ -85,9 +94,9 @@ def contact_view(request):
         if form.is_valid():
             send_mail(
                 subject='People Review',
-                message= form.cleaned_data.get('msg'),
-                from_email= form.cleaned_data.get('email'),
-                recipient_list= ['amir.1388512.rezaie@gmail.com'],
+                message=form.cleaned_data.get('msg'),
+                from_email=form.cleaned_data.get('email'),
+                recipient_list=['amir.1388512.rezaie@gmail.com'],
                 fail_silently=True,
             )
             return redirect('contact')
@@ -95,4 +104,22 @@ def contact_view(request):
             return redirect('home')
     else:
         form = ContactForm()
-    return render(request, 'contact.html')
+    return render(request, 'contact.html', {'form': form})
+
+
+# CreateArticle
+# ------------------------------------------------------------------
+@login_required
+def create_article_view(request):
+    if request.method == "POST":
+        form = CreateArticleForm(request.POST)
+        if form.is_valid():
+            article = form.save(commit=False)
+            article.author = request.user
+            article.save()
+            return redirect('home')
+    else:
+        form = CreateArticleForm()
+    return render(request, 'createArticle.html', {'form': form})
+
+# ------------------------------------------------------------------

@@ -1,41 +1,41 @@
 {% extends "parent/parent.html" %}
 {% load static %}
 {% block title %}
-    EchoPen | Home
+EchoPen | Home
 {% endblock %}
 {% block links %}
-    <link rel="stylesheet" href='{% static "css/forms.css" %}'>
+    <link rel="stylesheet" href='{% static "css/home.css" %}'>
 {% endblock %}
 {% block content %}
-    <div class="img-container" data-aos="fade-right">
+<div style="position: relative;z-index: 2;">
+    <h1 class="title"></h1>
+    <button class="btn"><a href="SignUp/">Get Started</a></button>
 
-        <h1 class="main-title"></h1>
-        <button class="btn"><a href="./templates/SignUp.html">Get Started</a></button>
-        <div class="web-data-container">
-            <div class="data">
-                <!-- this number should be change when i created django file -->
-                <p class="data-num" data-num="1234"  data-aos="fade-right"></p> 
-                <p class="data-lable"  data-aos="fade-left">users</p>
-            </div>
-            <div class="data">
-                <p class="data-num" data-num="134" data-aos="fade-right"></p>
-                <p class="data-lable"  data-aos="fade-left">articles</p>
-            </div>
+
+    <div class="web-data-container">
+        <div class="data">
+            <!-- this number should be change when i created django file -->
+            <p class="data-num" data-num="1234"></p>
+            <p class="data-lable">users</p>
+        </div>
+        <div class="data">
+            <p class="data-num" data-num="134"></p>
+            <p class="data-lable">articles</p>
         </div>
     </div>
-
+</div>
 
 
 {% endblock %}
 {% block scripts %}
-    <!-- TypeIt JS -->
-    <script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>
-    <script>
-        new TypeIt(".main-title", {
-            strings: "EchoPen Is a Website For Write Articles And Read Articles ",
-            speed: 60,
-        }).go();
-    </script>
-    <!-- My Script  -->
-    <script src='{% static "js/home.js" %}'></script>
+<!-- TypeIt JS -->
+<script src="https://unpkg.com/typeit@8.7.1/dist/index.umd.js"></script>
+<script>
+    new TypeIt(".title", {
+        strings: "EchoPen Is a Website For Write Articles And Read Articles ",
+        speed: 60,
+    }).go();
+</script>
+<!-- My Script  -->
+<script src='{% static "Js/loadData.js" %}'></script>
 {% endblock %}

@@ -6,7 +6,7 @@ var initialData = {
         backgroundColor: 'rgba(54, 162, 235, 0.2)',
         borderColor: 'rgba(54, 162, 235, 1)',
         borderWidth: 1,
-        data: [10,20,30,40,50]
+        data: [3,40,50,10,80]
     }]
 };
 
@@ -41,7 +41,7 @@ var data = {
         backgroundColor: 'rgba(54, 162, 235, 0.2)',
         borderColor: 'rgba(54, 162, 235, 1)',
         borderWidth: 1,
-        data: [30,40,50,10,40]
+        data: [3,40,50,10,80]
     }]
 };
 

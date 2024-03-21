@@ -15,6 +15,19 @@
         <p> don't you have account? <a href="{% url 'SignUp' %}">Sign Up</a></p>
         <form method="post">
             {% csrf_token %}
+            <div class="errors">
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        <ul>
+                            {% for field, error_list in form.errors.items %}
+                                {% for error in error_list %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
             <input type="text" name="username" placeholder="username..." value="{% if form.errors %}{{ form.Username.value }}{% endif %}">
             <input type="password" name="password" placeholder="password..." value="{% if form.errors %}{{ form.password.value }}{% endif %}">
             <input type="submit" value="Sign In">

@@ -1,0 +1,12 @@
+@import url('./reset.css');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+/* my css varaibles are in this file  */
+:root {
+    --primary-color: #2f66ee;
+    --txt-color: #c0c0c0;
+    --bg-light: #f3f4f6 ;
+    --bg-dark: #1c1c28;
+    --font-family: sans-serif;
+}

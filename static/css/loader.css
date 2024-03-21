@@ -1,0 +1,63 @@
+/* @import url('./var.css'); */
+
+.loader-container1,
+.loader-container2{
+    position: fixed;
+    width: 100%;
+    height: 50vh;
+    background:var(--bg-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s, visibility 0.75s;
+    z-index: 100;
+
+}
+
+body.dark .loader-container1,body.dark .loader-container2{
+  background: var(--bg-light);
+}
+
+.loader-container1{
+  top: 0;
+  left: 0;
+}
+
+.loader-container2{
+  left: 0;
+  bottom: 0;
+}
+
+.bottom-loader{
+  animation: translateToBottom 1s forwards ease;
+}
+
+.top-loader{
+  animation: translateToTop 1s forwards ease;
+}
+
+.loader--hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+
+@keyframes translateToTop {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-400px);
+  }
+}
+
+
+@keyframes translateToBottom {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(400px);
+  }
+}
+

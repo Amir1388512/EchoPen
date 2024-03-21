@@ -1,0 +1,27 @@
+{% extends "parent/parent.html" %}
+{% load static %}
+{% block title %}
+EchoPen | SignIn
+{% endblock %}
+{% block links %}
+<link rel="stylesheet" href='{% static "css/forms.css" %}'>
+{% endblock %}
+{% block content %}
+
+<div class="form-container">
+    <h2>
+        Create Article
+    </h2>
+    <p>we use markdown what is <a href="https://www.markdownguide.org/basic-syntax/">MarkDown</a></p>
+    <form action="#" method="post">
+        {% csrf_token %}
+        {{ form.errors}}
+        <input type="text" name="title" placeholder="title...">
+        <textarea name="content" style="resize: none;" minlength="30" maxlength="500"
+            placeholder="Type your content here..."></textarea>
+        <input type="submit" value="Send">
+    </form>
+</div>
+
+
+{% endblock %}

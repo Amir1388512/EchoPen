@@ -8,4 +8,5 @@ urlpatterns = [
     path('Dashboard/<slug:slug>', dashboard_view, name='Dashboard'),
     path('LogOut/<slug:slug>', logout_view, name='LogOut'),
     path('contact/', contact_view, name='contact'),
+    path('createArticle/', create_article_view, name='createArticle'),
 ]

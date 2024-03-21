@@ -1,0 +1,54 @@
+@import url('./var.css');
+@import url('./menu.css');
+
+
+body {
+    font-family: var(--font-family) !important;
+    font-size: 1em;
+    padding: 5px;
+    overflow-x: hidden;
+    color: var(--txt-color);
+    text-align: center;
+}
+
+
+.light {
+    background: var(--bg-light);
+}
+
+.dark {
+    background: var(--bg-dark);
+}
+
+.btn{
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    background: var(--primary-color);
+    box-shadow: 0 0 5px var(--primary-color);
+    transition: 0.6s;
+    margin: 0 5px;
+}
+
+/* all <a> in btn  */
+.btn>a {
+    font-weight: bold;
+    color: #fff;
+}
+
+/* btn mouse hover  */
+.btn:hover {
+    transform: skew(-10deg);
+}
+
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+    font-family: var(--font-family);
+}

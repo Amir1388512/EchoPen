@@ -10,9 +10,11 @@
         {% endblock %}
     </title>
 
-    <!-- defualt links  -->
-    <link rel="stylesheet" href='{% static "css/main.css" %}'>
-    <link rel="stylesheet" href='{% static "css/home.css" %}'>
+    
+    <link rel="stylesheet" href='{% static "css/loader.css" %}'>
+    <link rel="stylesheet" href='{% static "css/base.css" %}'>
+    <link rel="stylesheet" href='{% static "css/animations.css" %}'>
+    <link rel="stylesheet" href='{% static "css/menu.css" %}'>
     <!-- AOS Css  -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Bootstrap Icon -->
@@ -22,24 +24,28 @@
     {% endblock %}
     
 </head>
-<body>
+<body class="light">
     
     <!-- Start Menu  -->
     <menu>
-        <div class="opt" data-aos="fade-down"><a href="/">Home</a></div>
-        <div class="opt" data-aos="fade-up"><a href="/contact">Contact</a></div>
-        <div class="opt" data-aos="fade-down"><a href="./templates/articles.html">Articles</a></div>
+        <div class="opt"><a href="/">Home</a></div>
+        <div class="opt"><a href="/contact">Contact</a></div>
+        <div class="opt"><a href="./templates/articles.html">Articles</a></div>
         {% if request.user.is_authenticated %}
-            <div class="opt" data-aos="fade-up"><a href="/Dashboard/{{ request.user.slug }}">Dashboard</a></div>
+            <div class="opt"><a href="/Dashboard/{{ request.user.slug }}">Dashboard</a></div>
             {% else %}
-                <div class="opt" data-aos="fade-up"><a href="/SignUp">Register</a></div>
+                <div class="opt"><a href="/SignUp">Register</a></div>
         {% endif %}
         {% if request.user.is_admin %}
-            <div class="opt" data-aos="fade-up"><a href="/admin">admin</a></div>
+            <div class="opt"><a href="/admin">admin</a></div>
         {% endif %}
-
+        <div class="opt"><button id="change-theme-btn"><i class="bi bi-moon"></i></button></div>
     </menu>
     <!-- finished  -->
+
+    <!-- loader  -->
+    <div class="loader-container1"></div>
+    <div class="loader-container2"></div>
 
 
     {% block content %}
@@ -65,11 +71,14 @@
     <!-- finished -->
 
     <!-- default scripts  -->
+    <script type="module" src='{% static "Js/theme.js" %}'></script>
+    <script type="module" src='{% static "Js/loader.js" %}'></script>
     <!-- AOS JS  -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
     </script>
+    
     {% block scripts %}
         <!-- links  -->
     {% endblock %}

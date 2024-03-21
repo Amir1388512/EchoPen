@@ -1,4 +1,6 @@
 from django.contrib.auth.models import BaseUserManager
+from django.db import models
+
 
 
 class UserManager(BaseUserManager):
@@ -24,3 +26,8 @@ class UserManager(BaseUserManager):
         user.is_admin = True
         user.save(using=self._db)
         return user
+    
+
+class PublishedManager(models.Manager):
+    def get_queryset(self):
+        return super(PublishedManager, self).get_queryset().filter(status='PUB')

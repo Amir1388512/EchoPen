@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from django.utils.timezone import now
-from .managers import UserManager
+from .managers import *
 from django.urls import reverse
 from django.utils.text import slugify
 
@@ -18,7 +18,6 @@ class User(AbstractBaseUser):
     slug = models.SlugField(unique=True)
 
     objects = UserManager()
-
 
     USERNAME_FIELD = "Username"
     REQUIRED_FIELDS = ["Email"]
@@ -39,8 +38,34 @@ class User(AbstractBaseUser):
 
     def get_absolute_url(self):
         return reverse('Dashboard', args=self.slug)
-    
+
     def save(self, *args, **kwargs):
-        if not self.pk:  
+        if not self.pk:
             self.slug = slugify(self.Username)
         super().save(*args, **kwargs)
+
+
+# Article Model
+
+class Article(models.Model):
+    author = models.CharField(max_length=15)
+    content = models.TextField(max_length=10000)
+    created_time = models.DateTimeField(default=now)
+    STATUS_CHOICES = (
+        ("PEN", "Pending"),
+        ("REJ", "Rejected"),
+        ("PUB", "Published"),
+    )
+    status = models.CharField(choices=STATUS_CHOICES, max_length=3, default="PEN")
+    title = models.CharField(max_length=40, unique=True)
+    like = models.IntegerField(default=0)
+    view = models.IntegerField(default=0)
+    slug = models.SlugField(unique=True)
+
+    objects = PublishedManager()
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('Article', kwargs={'slug': self.slug})

@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .forms import UserChangeForm, UserCreationForm
 from django.contrib.auth.models import Group
-from .models import User
+from .models import *
 
 
 class UserAdmin(BaseUserAdmin):
@@ -13,7 +13,7 @@ class UserAdmin(BaseUserAdmin):
     list_filter = ["is_admin"]
     fieldsets = [
         (None, {"fields": ["Username", "Email", "password", 'slug']}),
-        ("Personal info", {"fields": [ "DateOfJoined"]}),
+        ("Personal info", {"fields": ["DateOfJoined"]}),
         ("Permissions", {"fields": ["is_admin"]}),
     ]
     add_fieldsets = [
@@ -33,3 +33,19 @@ class UserAdmin(BaseUserAdmin):
 admin.site.register(User, UserAdmin)
 
 admin.site.unregister(Group)
+
+
+class ArticleAdmin(admin.ModelAdmin):
+    list_display = ["author", "title", "status", "created_time"]
+    list_filter = ["status"]
+    ordering = ["created_time"]
+    search_fields = ["title", "author__username"]  # assuming author is a ForeignKey to User model
+
+    fieldsets = (
+        (None, {
+            'fields': ('title', 'content', 'author', 'status')
+        }),
+    )
+
+
+admin.site.register(Article, ArticleAdmin)

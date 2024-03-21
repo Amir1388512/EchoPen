@@ -14,6 +14,19 @@
         </h2>
         <form method="post">
             {% csrf_token %}
+            <div class="errors">
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        <ul>
+                            {% for field, error_list in form.errors.items %}
+                                {% for error in error_list %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
             <input type="text" name="fullName" placeholder="full name..." >
             <input type="email" name="email" placeholder="email..." >
             <textarea name="msg" style="resize: none;" minlength="30" maxlength="600" placeholder="Type your massage here..."></textarea>
