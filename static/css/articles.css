@@ -105,17 +105,16 @@ body.light .article{
 .article>h2{
     font-size: 1em;
     margin-top: 5px;
-    padding: 2px;
 }
 
- .discription{
+ .description{
     padding: 5px;
     text-align: center;
     font-size: 0.75em ;
     color: #909090 ;
     font-weight: 300;
     margin-top: 10px;
-} 
+}
 
 .hr{
     width: 55%;

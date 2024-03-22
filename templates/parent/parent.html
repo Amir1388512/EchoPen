@@ -30,7 +30,7 @@
     <menu>
         <div class="opt"><a href="/">Home</a></div>
         <div class="opt"><a href="/contact">Contact</a></div>
-        <div class="opt"><a href="./templates/articles.html">Articles</a></div>
+        <div class="opt"><a href="/Articles">Articles</a></div>
         {% if request.user.is_authenticated %}
             <div class="opt"><a href="/Dashboard/{{ request.user.slug }}">Dashboard</a></div>
             {% else %}

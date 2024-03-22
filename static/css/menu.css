@@ -23,7 +23,7 @@ menu {
 
 /* menu item mouse hover  */
 .opt>a:hover {
-    font-weight: 500;
+    font-weight: 500 !important;
 }
 
 .opt>button{

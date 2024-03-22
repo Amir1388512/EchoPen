@@ -24,7 +24,7 @@ class User(AbstractBaseUser):
 
     # Some Methods
     def __str__(self):
-        return self.Email
+        return self.Username
 
     def has_perm(self, perm, obj=None):
         return True
@@ -48,24 +48,30 @@ class User(AbstractBaseUser):
 # Article Model
 
 class Article(models.Model):
-    author = models.CharField(max_length=15)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField(max_length=10000)
     created_time = models.DateTimeField(default=now)
     STATUS_CHOICES = (
-        ("PEN", "Pending"),
-        ("REJ", "Rejected"),
-        ("PUB", "Published"),
+        ("Pending", "PEN"),
+        ("Rejected", "REJ"),
+        ("Published", "PUB"),
     )
-    status = models.CharField(choices=STATUS_CHOICES, max_length=3, default="PEN")
+    status = models.CharField(choices=STATUS_CHOICES, max_length=10, default="PEN")
     title = models.CharField(max_length=40, unique=True)
     like = models.IntegerField(default=0)
     view = models.IntegerField(default=0)
     slug = models.SlugField(unique=True)
 
-    objects = PublishedManager()
+    objects = models.Manager()
+
+    published = PublishedManager()
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('Article', kwargs={'slug': self.slug})

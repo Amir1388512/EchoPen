@@ -6,27 +6,20 @@
 {% block links %}
     <link rel="stylesheet" href='{% static "css/dashboard.css" %}'>
     <link rel="stylesheet" href='{% static "css/articles.css" %}'>
-
 {% endblock %}
 {% block content %}
-
 <style>
     /* CSS for responsiveness */
-
-
     .chart-container > div {
         width: 100%;
     }
-
     @media (min-width: 768px) {
         .chart-container > div {
             width: 45%;
         }
     }
 </style>
-
 <div class="dashboard-container">
-
     <div class="data-container">
         <div class="data">
             <div>
@@ -35,7 +28,7 @@
                     <i class="bi bi-postcard"></i>
                 </div>
             </div>
-            <h3>56</h3>
+            <h3>{{ articlesPublished }}</h3>
         </div>
         <div class="data">
             <div>
@@ -44,7 +37,7 @@
                     <i class="bi bi-eye"></i>
                 </div>
             </div>
-            <h3>350k</h3>
+            <h3>0</h3>
         </div>
         <div class="data">
             <div>
@@ -53,62 +46,49 @@
                     <i class="bi bi-arrow-clockwise"></i>
                 </div>
             </div>
-            <h3>4</h3>
+            <h3>{{ articlesPending }}</h3>
         </div>
     </div>
-
-
     <h2 style="font-size: 2em;">
         <span style="color: #2f66ee;">Your</span> Articles
     </h2>
     <button class="btn" style="margin-top: 3%;"><a href="/createArticle">Add Article</a></button>
-    <button class="btn" style="margin-top: 3%; background:#a83422;box-shadow: 0 0 3px #a83422;"><a href="/LogOut/{{ request.user.slug }}">Log
-            Out</a></button>
-
+    <button class="btn" style="margin-top: 3%; background:#a83422;box-shadow: 0 0 3px #a83422;"><a href="/LogOut/{{ request.user.slug }}">Log Out</a></button>
     <div class="articles-container">
-        <!-- article  -->
-        <div class="article">
-            <img src='{% static "media/jupiter.jpg" %}' width="300" height="200"
-                style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
-            <h2>
-                10 Facts about jupiter that you shold know
-            </h2>
-            <div class="hr"></div>
-            <div class="discription">
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident minima debitis nemo numquam
-                    incidunt odit nobis! Voluptate quibusdam nihil recusandae quo est itaque numquam nisi quas,
-                    velit natus ipsum excepturi.
-                </p>
-            </div>
-            <div class="hr"></div>
-            <div class="detail">
-                <div>
-                    <i class="bi bi-eye"></i>
-                    <p>121k</p>
+        {% for article in articles %}
+            <!-- article  -->
+            <div class="article">
+                <img src='{% static "media/jupiter.jpg" %}' width="300" height="200" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+                <h2>{{ article.title |title }}</h2>
+                <div class="hr"></div>
+                <div class="description">
+                    <p >{{ article.content | truncatewords:15 }}</p>
                 </div>
-                <div>
-                    <i class="bi bi-heart"></i>
-                    <p>1k</p>
+                <div class="hr"></div>
+                <div class="detail">
+                    <div>
+                        <i class="bi bi-eye"></i>
+                        <p>{{ article.view }}</p>
+                    </div>
+                    <div>
+                        <i class="bi bi-heart"></i>
+                        <p>{{ article.like }}</p>
+                    </div>
+                    <div>
+                        <i class="bi bi-calendar"></i>
+                        <p>{{ article.created_time |date:"D d M Y"}}</p>
+                    </div>
                 </div>
-                <div>
-                    <i class="bi bi-calendar"></i>
-                    <p>1402/2/12</p>
-                </div>
-
-                <div>
-                    <i class="bi bi-chat-left-dots"></i>
-                    <p>50</p>
+                <div class="btn-container">
+                    <button class="btn" style="background-color: #bf9f2a; box-shadow: 0 0 3px #bf9f2a;"><a href="#">Edit</a></button>
+                    <button class="btn" style="background-color: #a83422; box-shadow: 0 0 3px #a83422;"><a href="/DeleteArticle/{{ article.slug }}">Delete</a></button>
+                    <button class="btn"><a href="#">{{ article.status }}</a></button>
                 </div>
 
             </div>
-            <div class="btn-container">
-                <button class="btn" style="background-color: #bf9f2a; box-shadow: 0 0 3px #bf9f2a;"><a
-                        href="#">Edit</a></button>
-                <button class="btn" style="background-color: #a83422; box-shadow: 0 0 3px #a83422;"><a
-                        href="#">Delete</a></button>
-            </div>
-        </div>
+            {% empty %}
+                <p>We Don't Have any Articles 😒</p>
+        {% endfor %}
     </div>
     <h2 style="font-size: 2em;">
         Articles <span style="color: #2f66ee;">Analytics</span>
@@ -122,12 +102,10 @@
         </div>
     </div>
 </div>
-
-
 {% endblock %}
 {% block scripts %}
-    <!-- Chart js  -->
+    <!-- Chart js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- My Script  -->
+    <!-- My Script -->
     <script src='{% static "Js/chart.js" %}'></script>
 {% endblock %}

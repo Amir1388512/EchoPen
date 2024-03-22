@@ -9,4 +9,6 @@ urlpatterns = [
     path('LogOut/<slug:slug>', logout_view, name='LogOut'),
     path('contact/', contact_view, name='contact'),
     path('createArticle/', create_article_view, name='createArticle'),
+    path('Articles/', article_view, name='Articles'),
+    path('DeleteArticle/<slug:slug>', delete_article_view, name='DeleteArticle'),
 ]

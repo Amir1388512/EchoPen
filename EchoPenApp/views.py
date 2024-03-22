@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from .forms import *
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
@@ -63,11 +63,15 @@ def signin_view(request):
 # ------------------------------------------------------------------
 @login_required
 def dashboard_view(request, slug):
+    articles = Article.objects.all()
+    articlesPublished = Article.published.all().count()
+    articlesPending = Article.objects.filter(status="Pending").count()
     if slug is not None:
         username = slugify(request.user.Username)
         if username != slug:
             return redirect('home')
-    return render(request, 'dashboard.html')
+    return render(request, 'dashboard.html',
+                  {"articles": articles, "articlesPublished": articlesPublished, 'articlesPending': articlesPending})
 
 
 # ------------------------------------------------------------------
@@ -122,4 +126,27 @@ def create_article_view(request):
         form = CreateArticleForm()
     return render(request, 'createArticle.html', {'form': form})
 
+
+# ------------------------------------------------------------------
+
+
+# Articles
+# ------------------------------------------------------------------
+def article_view(request):
+    articlesPublished = Article.published.all()
+
+    return render(request, 'articles.html', {'articles': articlesPublished})
+
+
+# ------------------------------------------------------------------
+
+# Delete Articles
+# ------------------------------------------------------------------
+@login_required
+def delete_article_view(request, slug):
+    article = get_object_or_404(Article, slug=slug)
+    if request.user != article.author:
+        return redirect('home')
+    article.delete()
+    return redirect('home')
 # ------------------------------------------------------------------

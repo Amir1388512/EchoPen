@@ -13,12 +13,24 @@ EchoPen | SignIn
         Create Article
     </h2>
     <p>we use markdown what is <a href="https://www.markdownguide.org/basic-syntax/">MarkDown</a></p>
+    <div class="errors">
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                <ul>
+                    {% for field, error_list in form.errors.items %}
+                        {% for error in error_list %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
     <form action="#" method="post">
         {% csrf_token %}
-        {{ form.errors}}
-        <input type="text" name="title" placeholder="title...">
+        <input type="text" name="title" placeholder="title..." value="{% if form.errors %}{{ form.title.value }}{% endif %}">
         <textarea name="content" style="resize: none;" minlength="30" maxlength="500"
-            placeholder="Type your content here..."></textarea>
+            placeholder="Type your content here..." value="{% if form.errors %}{{ form.content.value }}{% endif %}"></textarea>
         <input type="submit" value="Send">
     </form>
 </div>

@@ -1,0 +1,60 @@
+{% extends "parent/parent.html" %}
+{% load static %}
+{% block title %}
+    EchoPen | Articles
+{% endblock %}
+{% block links %}
+    <link rel="stylesheet" href='{% static "css/articles.css" %}'>
+{% endblock %}
+{% block content %}
+    <div style=" text-align: center; margin: 4%;position: relative;z-index: 2;">
+        <h1 style="font-size: 1.5em;">
+            Articles
+        </h1>
+    </div>
+
+    <div class="sort-container">
+        <div class="sort-item"><a href="#">Newest</a></div>
+        <div class="sort-item"><a href="#">Oldest</a></div>
+        <div class="sort-item"><a href="#">Rating</a></div>
+    </div>
+
+    <div class="articles-container">
+
+        {% for article in articles %}
+            <!-- article  -->
+            <div class="article">
+                <img src='{% static "media/jupiter.jpg" %}' width="300" height="200" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+                <h2>{{ article.title |title }}</h2>
+                <div class="hr"></div>
+                <div class="description">
+                    <p >{{ article.content | truncatewords:15 }}</p>
+                </div>
+                <div class="hr"></div>
+                <div class="detail">
+                    <div>
+                        <i class="bi bi-person"></i>
+                        <p>{{ article.author }}</p>
+                    </div>
+                    <div>
+                        <i class="bi bi-heart"></i>
+                        <p>{{ article.like }}</p>
+                    </div>
+                    <div>
+                        <i class="bi bi-calendar"></i>
+                        <p>{{ article.created_time |date:"D d M Y"}}</p>
+                    </div>
+                </div>
+                <div class="btn-container">
+                    <button class="btn"><a href="#">Read More</a></button>
+                </div>
+
+            </div>
+            {% empty %}
+                <p>We Don't Have any Articles 😒</p>
+        {% endfor %}
+
+
+
+    </div>
+{% endblock %}
