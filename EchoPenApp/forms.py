@@ -21,7 +21,7 @@ class ContactForm(forms.Form):
     email = forms.EmailField(min_length=10, max_length=30)
 
 
-class CreateArticleForm(forms.ModelForm):
+class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article
         fields = ("title", "content")

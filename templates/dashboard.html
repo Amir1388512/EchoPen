@@ -82,12 +82,12 @@
                 <div class="btn-container">
                     <button class="btn" style="background-color: #bf9f2a; box-shadow: 0 0 3px #bf9f2a;"><a href="/EditArticle/{{ article.slug }}">Edit</a></button>
                     <button class="btn" style="background-color: #a83422; box-shadow: 0 0 3px #a83422;"><a href="/DeleteArticle/{{ article.slug }}">Delete</a></button>
-                    <button class="btn"><a href="#">{{ article.status }}</a></button>
                 </div>
+                <div class="status">{{ article.status}}...</div> 
 
             </div>
             {% empty %}
-                <p>We Don't Have any Articles 😒</p>
+                <p>You Don't Have any Articles 😒</p>
         {% endfor %}
     </div>
     <h2 style="font-size: 2em;">

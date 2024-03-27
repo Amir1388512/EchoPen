@@ -9,7 +9,7 @@ from django.utils.text import slugify
 # My User Model
 class User(AbstractBaseUser):
     # Fields
-    Username = models.CharField(max_length=15, unique=True)
+    Username = models.CharField(max_length=10, unique=True)
     Email = models.EmailField(max_length=30, unique=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)

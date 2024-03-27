@@ -90,3 +90,22 @@ body.light .chart-container {
         width: 95%;
     }
 }
+
+.status{
+    margin: 10px;
+    padding: 5px;
+    color: var(--primary-color);
+    animation: infinite status_animation 2s alternate;
+}
+
+@keyframes status_animation {
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.15);
+    }
+    100%{
+        transform: scale(1);
+    }
+}

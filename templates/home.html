@@ -1,5 +1,6 @@
 {% extends "parent/parent.html" %}
 {% load static %}
+{% load tags %}
 {% block title %}
 EchoPen | Home
 {% endblock %}
@@ -9,17 +10,21 @@ EchoPen | Home
 {% block content %}
 <div style="position: relative;z-index: 2;">
     <h1 class="title"></h1>
-    <button class="btn"><a href="SignUp/">Get Started</a></button>
+    {% if request.user.is_authenticated %}
+        <button class="btn"><a href="/Dashboard/{{ request.user.slug }}">Go To Dashboard</a></button>
+    {% else %}
+        <button class="btn"><a href="SignUp/">Get Started</a></button>
+    {% endif %}
 
 
     <div class="web-data-container">
         <div class="data">
             <!-- this number should be change when i created django file -->
-            <p class="data-num" data-num="1234"></p>
+            <p class="data-num" data-num="{% user_num %}"></p>
             <p class="data-lable">users</p>
         </div>
         <div class="data">
-            <p class="data-num" data-num="134"></p>
+            <p class="data-num" data-num="{% article_num %}"></p>
             <p class="data-lable">articles</p>
         </div>
     </div>

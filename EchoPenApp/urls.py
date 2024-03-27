@@ -13,8 +13,5 @@ urlpatterns = [
     path('createArticle/', create_article_view, name='createArticle'),
     path('Articles/', article_view, name='Articles'),
     path('DeleteArticle/<slug:slug>', delete_article_view, name='DeleteArticle'),
-    path('Articles/newest/', newest_article_view, name='Newest'),
-    path('Articles/oldest/', oldest_article_view, name='Oldest'),
-    path('Articles/rating/', rating_article_view, name='Rating'),
     path('EditArticle/<slug:slug>', edit_article_view, name='EditArticle'),
 ]

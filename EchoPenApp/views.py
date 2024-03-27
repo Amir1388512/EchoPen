@@ -10,6 +10,8 @@ from django.core.mail import send_mail
 # Home View
 # ------------------------------------------------------------------
 def home_view(request):
+    # if request.is_authenticated:
+    #     return redirect('Article')
     return render(request, 'home.html')
 
 
@@ -63,9 +65,9 @@ def signin_view(request):
 # ------------------------------------------------------------------
 @login_required
 def dashboard_view(request, slug):
-    articles = Article.objects.all()
-    articlesPublished = Article.published.all().count()
-    articlesPending = Article.objects.filter(status="Pending").count()
+    articles = Article.objects.all().filter(author=request.user)
+    articlesPublished = Article.published.all().filter(author=request.user).count()
+    articlesPending = Article.objects.filter(status="Pending",author=request.user).count()
     if slug is not None:
         username = slugify(request.user.Username)
         if username != slug:
@@ -116,14 +118,14 @@ def contact_view(request):
 @login_required
 def create_article_view(request):
     if request.method == "POST":
-        form = CreateArticleForm(request.POST)
+        form = ArticleForm(request.POST)
         if form.is_valid():
             article = form.save(commit=False)
             article.author = request.user
             article.save()
             return redirect('home')
     else:
-        form = CreateArticleForm()
+        form = ArticleForm()
     return render(request, 'createArticle.html', {'form': form})
 
 
@@ -152,35 +154,20 @@ def delete_article_view(request, slug):
 
 # ------------------------------------------------------------------
 
-# Newest Article view
-# ------------------------------------------------------------------
-def newest_article_view(request):
-    articlesPublished = Article.published.all().order_by('created_time')
-    return render(request, 'articles.html', {'articles': articlesPublished})
 
 
-# ------------------------------------------------------------------
-
-# oldest article view
-# ------------------------------------------------------------------
-def oldest_article_view(request):
-    articlesPublished = Article.published.all().order_by('-created_time')
-    return render(request, 'articles.html', {'articles': articlesPublished})
-
-
-# ------------------------------------------------------------------
-# rating article view
-# ------------------------------------------------------------------
-def rating_article_view(request):
-    articlesPublished = Article.published.all().order_by('like')
-    return render(request, 'articles.html', {'articles': articlesPublished})
-
-
-# ------------------------------------------------------------------
-
-# rating article view
+# editing article view
 # ------------------------------------------------------------------
 def edit_article_view(request, slug):
     article = get_object_or_404(Article, slug=slug)
-    return HttpResponse(article)
+
+    if request.method == "POST":
+        form = ArticleForm(request.POST, instance=article)
+        if form.is_valid():
+                form.save()
+                return redirect('home') 
+    else:
+        form = ArticleForm(instance=article)
+
+    return render(request, "createArticle.html", {'form': form, 'title': article.title, 'content': article.content})
 # ------------------------------------------------------------------
