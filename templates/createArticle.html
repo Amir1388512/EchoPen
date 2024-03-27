@@ -30,7 +30,7 @@ EchoPen | SignIn
         {% csrf_token %}
         <input type="text" name="title" placeholder="title..." value="{% if form.errors %}{{ form.title.value }}{% endif %}">
         <textarea name="content" style="resize: none;" minlength="30" maxlength="500"
-            placeholder="Type your content here..." value="{% if form.errors %}{{ form.content.value }}{% endif %}"></textarea>
+            placeholder="Type your content here..." value="{% if form.errors %}{{ form.content.value }}{% endif %}">{{ content  }}</textarea>
         <input type="submit" value="Send">
     </form>
 </div>

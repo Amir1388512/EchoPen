@@ -134,7 +134,6 @@ def create_article_view(request):
 # ------------------------------------------------------------------
 def article_view(request):
     articlesPublished = Article.published.all()
-
     return render(request, 'articles.html', {'articles': articlesPublished})
 
 
@@ -149,4 +148,39 @@ def delete_article_view(request, slug):
         return redirect('home')
     article.delete()
     return redirect('home')
+
+
+# ------------------------------------------------------------------
+
+# Newest Article view
+# ------------------------------------------------------------------
+def newest_article_view(request):
+    articlesPublished = Article.published.all().order_by('created_time')
+    return render(request, 'articles.html', {'articles': articlesPublished})
+
+
+# ------------------------------------------------------------------
+
+# oldest article view
+# ------------------------------------------------------------------
+def oldest_article_view(request):
+    articlesPublished = Article.published.all().order_by('-created_time')
+    return render(request, 'articles.html', {'articles': articlesPublished})
+
+
+# ------------------------------------------------------------------
+# rating article view
+# ------------------------------------------------------------------
+def rating_article_view(request):
+    articlesPublished = Article.published.all().order_by('like')
+    return render(request, 'articles.html', {'articles': articlesPublished})
+
+
+# ------------------------------------------------------------------
+
+# rating article view
+# ------------------------------------------------------------------
+def edit_article_view(request, slug):
+    article = get_object_or_404(Article, slug=slug)
+    return HttpResponse(article)
 # ------------------------------------------------------------------

@@ -1,0 +1,18 @@
+<!-- templates/errors/404.html -->
+{% extends "parent/parent.html" %}
+{% load static %}
+{% block title %}
+    EchoPen | 404
+{% endblock %}
+{% block links %}
+    <link rel="stylesheet" href="{% static 'css/404.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="error-container">
+        <div class="error-content">
+            <h1>404</h1>
+            <h2>Page Not Found</h2>
+            <p>The page you are looking for might have been removed <a href="/">home</a></p>
+        </div>
+    </div>
+{% endblock %}

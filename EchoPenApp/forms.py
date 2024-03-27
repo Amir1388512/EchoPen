@@ -14,7 +14,7 @@ class UserChangeForm(BaseUserChangeForm):
         model = User
         fields = ("Username", "Email")
 
-# Conatact Form
+# Contact Form
 class ContactForm(forms.Form):
     msg = forms.CharField(max_length=600, min_length=30, widget=forms.Textarea)
     fullName = forms.CharField(min_length=6, max_length=30)

@@ -56,7 +56,7 @@ class Article(models.Model):
         ("Rejected", "REJ"),
         ("Published", "PUB"),
     )
-    status = models.CharField(choices=STATUS_CHOICES, max_length=10, default="PEN")
+    status = models.CharField(choices=STATUS_CHOICES, max_length=10, default="Pending")
     title = models.CharField(max_length=40, unique=True)
     like = models.IntegerField(default=0)
     view = models.IntegerField(default=0)
